@@ -6,3 +6,11 @@
   height: 1.5rem !important;
   width: 1.5rem !important;
 }
+body{
+  background-color:gainsboro;
+    height: 800px;
+}
+.register-box{
+  padding-top: 80px;
+}
+

@@ -11,11 +11,11 @@ export class AuthServiceService {
   constructor(private http: HttpClient) { }
 
   login(credentials: { email: string, password: string }) {
-    return this.http.post<{ token: string,user:string }>(this.loginUrl, credentials)
+    return this.http.post<{ token: string,user:number }>(this.loginUrl, credentials)
       .pipe(
         tap(response => {
           localStorage.setItem('token', response.token);
-          localStorage.setItem('user', response.user);
+          localStorage.setItem('user', response.user.toString());
         })
       );
   }

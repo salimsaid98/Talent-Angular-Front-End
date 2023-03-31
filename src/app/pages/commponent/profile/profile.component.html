@@ -11,122 +11,422 @@
         </ol>
       </div>
     </div>
-  </div><!-- /.container-fluid -->
-</section>
+  </div>
 
-<section class="content">
+<section class="content" *ngIf="check">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3">
-
-        <!-- Profile Image -->
-        <div class="card card-primary card-outline">
-          <div class="card-body box-profile">
-            <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-                   src="../../../../assets/dist/img/user4-128x128.jpg"
-                   alt="User profile picture">
-            </div>
-
-            <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-            <p class="text-muted text-center">Software Engineer</p>
-
-            <ul class="list-group list-group-unbordered mb-3">
-              <li class="list-group-item">
-                <b>Location</b> <a class="float-right">Zanzibar</a>
-              </li>
-              <li class="list-group-item">
-                <b>Gender</b> <a class="float-right">Female</a>
-              </li>
-              <li class="list-group-item">
-                <b>Phone</b> <a class="float-right">+255657821890</a>
-              </li>
-            </ul>
-
-            <a href="#" class="btn btn-primary btn-block"><b>Edit</b></a>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
-
-      </div>
       <div class="col-md-9">
-        <!-- About Me Box -->
-        <div class="card card-primary">
+        <div class="card">
           <div class="card-header">
-            <h3 class="card-title">About Me</h3>
+            Personal Information
           </div>
-          <!-- /.card-header -->
           <div class="card-body">
-            <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville   <a href="" class=" .btn.btn-app">
-                <i class="fas fa-edit"></i> Edit
-              </a>
-            </p>
-
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville    <a href="" class=" .btn.btn-app">
-                <i class="fas fa-edit"></i> Edit
-              </a>
-            </p>
-          <p>
-
-            <a href="" class=" .btn.btn-app">
-              <i class="fas fa-pen"></i> Add
-            </a>
-          </p>
-            <hr>
-
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-            <p class="text-muted">Malibu, California</p>
-
-            <hr>
-
-            <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-            <p class="text-muted">
-              <span class="tag tag-danger">UI Design</span>
-              <span class="tag tag-success">Coding</span>
-              <span class="tag tag-info">Javascript</span>
-              <span class="tag tag-warning">PHP</span>
-              <span class="tag tag-primary">Node.js</span>
-            </p>
-            <a href="" class=" .btn.btn-app">
-              <i class="fas fa-pen"></i> Add
-            </a>
-
-            <hr>
-
-            <strong><i class="far fa-file-alt mr-1"></i> Work Experience</strong>
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville   <a href="" class=" .btn.btn-app">
-                <i class="fas fa-edit"></i> Edit
-              </a>
-            </p>
-
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville    <a href="" class=" .btn.btn-app">
-                <i class="fas fa-edit"></i> Edit
-              </a>
-            </p>
-          <p>
-
-            <a href="" class=" .btn.btn-app">
-              <i class="fas fa-pen"></i> Add
-            </a>
+            <div class="row">
+              <div class="col-md-4">
+                First Name : <input type="text" class="form-control" placeholder="first name">
+              </div>
+              <div class="col-md-4">
+                Second Name : <input type="text" class="form-control" placeholder="first name">
+              </div>
+              <div class="col-md-4">
+                Last Name : <input type="text" class="form-control" placeholder="first name">
+              </div>
+            </div><hr>
+            <div class="row">
+              <div class="col-md-4">
+                Phone : <input type="text" class="form-control" placeholder="phone">
+              </div>
+              <div class="col-md-4">
+                Address : <input type="text" class="form-control" placeholder="address">
+              </div>
+              <div class="col-md-4">
+                Gender :<select name="" id="" class="form-control">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+               </select>
+              </div>
+            </div><hr>
+            <div class="row">
+              <div class="col-md-4">
+                Date of Birth : <input type="date" class="form-control" placeholder="">
+              </div>
+              <div class="col-md-4">
+                Profile Picture : <input type="file" class="form-control" placeholder="">
+              </div>
+            </div> <hr>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-success">Save</button>
+             </div>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
       </div>
+    </div>
+  </div>
+</section>
+
+  <!-- /.container-fluid -->
+  <section class="content" *ngIf="check2">
+
+    <div class="container-fluid" >
+      <div class="row">
+        <div class="col-md-4" >
+          <!-- Profile image after add personal info -->
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile" *ngFor="let info of personal_inf">
+              <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle"
+                     src="../assets/dist/img/user2-160x160.jpg"
+                     alt="User profile picture">
+              </div>
+
+              <h3 class="profile-username text-center"></h3>
+
+              <p class="text-muted text-center">{{info.first_name}}  {{info.last_name}}</p>
+              <!-- <button mat-button mat-raised-button color="primary"><i class="fa fa-camera"></i></button><hr> -->
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Location</b> <a class="float-right">{{info.address}}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Gender</b> <a class="float-right">{{info.gender}}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Phone</b> <a class="float-right">{{info.phone}}</a>
+                </li>
+              </ul>
+
+              <div class="row" >
+                <div class="col" >
+                  <a href="#" class="btn btn-primary btn-block"><i class="fa fa-edit"></i></a>
+                </div>
+              </div><hr>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <div class="col-md-6" >
+          <div class="card">
+            <div class="card-header " style="background-color: rgb(93, 93, 236); color:white" >
+             <strong>About Me</strong>
+            </div>
+            <div class="card-body">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title><i class="fa-sharp fa-regular fa-graduation-cap"></i> Education :</mat-card-title>
+                  <mat-card-subtitle>End</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions align="end">
+                  <button mat-button mat-raised-button color="primary" (click)="openAddEducatio()"><i class="fa fa-pen"></i></button>
+
+                </mat-card-actions>
+              </mat-card><hr>
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Talent : </mat-card-title>
+                  <mat-card-subtitle>End</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions align="end">
+                  <button mat-button mat-raised-button color="primary" (click)="openAddTalent()"><i class="fa fa-pen"></i></button>
+
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+  </section>
+</section>
+
+
+
+
+
+<!-- /.content -->
+
+<!-- Modal for Add Personal info-->
+<div class="modal fade" id="add_personal_info">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <form  [formGroup]="add_Personal_info_form"  (ngSubmit)="submit()">
+        <div class="modal-header">
+          <h4 class="modal-title">Small Modal</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="">First Name</label>
+                <input type="text" class="form-control" placeholder="first name" id="first_name" formControlName="first_name">
+              </div>
+              <div class="col-md-6">
+                <label for="">Second Name</label>
+                <input type="text" class="form-control" placeholder="second name" id="second_name" formControlName="second_name">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="">Last NAme</label>
+                <input type="text" class="form-control" placeholder="last name" id="last_name" formControlName="last_name">
+              </div>
+              <div class="col-md-6">
+                <label for="">Phone</label>
+                <input type="text" class="form-control" placeholder="phone" id="phone" formControlName="phone">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="">Date of Birth:</label>
+                <input type="date" class="form-control" id="dob" formControlName="dob">
+               </div>
+              <div class="col-md-6">
+               <label for="">Address:</label>
+                <input type="text" class="form-control" placeholder="address" id="address" formControlName="address">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+             <div class="col-md-6">
+              <label for="">Gender:</label><br>
+              <input type="radio" value="male"  id="gender" formControlName="gender">  Male:  <input type="radio" value="female" id="gender" formControlName="gender">  Female:
+             </div>
+            </div><br>
+            <!-- <div class="row">
+              <div class="div.col-md-6">
+                <label for="exampleInputFile">Upload Image</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile" id="image" formControlName="image">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text">Upload</span>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Save changes</button>
+        </div>
+      </form>
 
     </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- Modal for Add Education -->
+<div class="modal fade" id="add_education">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            small modal
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+              <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label for="">Collage Name:</label>
+                          <input type="text" class="form-control" placeholder="collae name">
+                        </div>
+                      </div><hr>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label for="">Education Level:</label>
+                          <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" data-select2-id="14">Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                          </select>
+                        </div>
+                      </div>
+                        <hr>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="">Start Date:</label>
+                          <input type="date" class="form-control" placeholder="">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="">Start Date:</label>
+                          <input type="date" class="form-control" placeholder="">
+                        </div>
+                      </div>
+              </div>
+          <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Save changes</button>
+        </div>
+        <!-- /.modal-content -->
+       </div>
+  <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+<!-- Modal for Add Work Experience -->
+<div class="modal fade" id="add_work_exp">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <form >
+        <div class="modal-header">
+          Small Modal
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Comapany Name:</label>
+              <input type="text" class="form-control" placeholder="company name">
+            </div>
+            <div class="col-md-6">
+              <label for="">Position:</label>
+              <input type="text" class="form-control" placeholder="position">
+            </div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Start Date:</label>
+              <input type="date" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label for="">End Date:</label>
+              <input type="date" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Save changes</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- Modal for Add Skills -->
+<div class="modal fade" id="add_skills">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <form >
+        <div class="modal-header">
+          Small Modal
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="">Skills:</label>
+              <label for="skill-input">Enter a skill:</label>
+              <input type="text" (input)="onInputChange(input.value)" #input>
+              <ul>
+                <li *ngFor="let skill of skills">{{ skill }}</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Save changes</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<ng-template #addeducation >
+  <h4 mat-dialog-title> Add  Education :</h4>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-md-12">
+        Degree: <input type="text" class="form-control">
+      </div>
+    </div><hr>
+    <div class="row">
+      <div class="col-md-12">
+        Institution: <input type="text" class="form-control">
+      </div>
+    </div><hr>
+    <div class="row">
+      <div class="col-md-12">
+        State date: <input type="date" class="form-control">
+      </div>
+    </div><hr>
+    <div class="row">
+      <div class="col-md-12">
+        End Date: <input type="date" class="form-control">
+      </div>
+    </div><hr>
+  </div>
+
+  <div mat-dialog-actions>
+     <button mat-button mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+
+<ng-template #addtalent>
+  <h4 mat-dialog-title> Add  Talent :</h4>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-md-12">
+        Skill Name: <input type="text" class="form-control">
+      </div>
+    </div><hr>
+    <div class="row">
+      <div class="col-md-12">
+        Expert: <input type="text" class="form-control">
+      </div>
+    </div><hr>
+    <div class="row">
+      <label for="">Work Experience</label>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        Start From: <input type="date" class="form-control">
+      </div>
+    </div><hr>
+    <div class="row">
+      <div class="col-md-12">
+        End To: <input type="date" class="form-control">
+      </div>
+    </div><hr>
+  </div>
+
+  <div mat-dialog-actions>
+     <button mat-button mat-dialog-close>Close</button>
+  </div>
+</ng-template>
+

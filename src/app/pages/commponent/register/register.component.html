@@ -8,7 +8,7 @@
         <div class="card-body register-card-body">
           <p class="login-box-msg">Register a new membership</p>
 
-          <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+          <!-- <form (ngSubmit)="onSubmit()" #myForm="ngForm">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="User name" name="user_name" [(ngModel)]="User.username">
               <div class="input-group-append">
@@ -43,13 +43,13 @@
             </div>
             <div class="row">
 
-              <!-- /.col -->
+
               <div class="col-4">
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
               </div>
-              <!-- /.col -->
+
             </div>
-          </form>
+          </form> -->
 
           <!-- <div class="social-auth-links text-center">
             <p>- OR -</p>
@@ -63,6 +63,37 @@
             </a>
           </div> -->
 
+            <div class="row">
+              <div class="col-md-6">
+                First Name :<input type="text" class="form-control" placeholder="first name">
+              </div>
+              <div class="col-md-6">
+                last Name :<input type="text" class="form-control" placeholder="last name">
+              </div>
+            </div><hr>
+            <div class="row">
+              <div class="col-md-6">
+                Email Address :<input type="email" class="form-control" placeholder="email">
+              </div>
+              <div class="col-md-6">
+                Phone Number :<input type="text" class="form-control" placeholder="phone number">
+              </div>
+            </div><hr>
+            <div class="row">
+              <div class="col-md-6">
+                Password:<input type="password" class="form-control" placeholder="password">
+              </div>
+              <div class="col-md-6">
+                Confirm Password :<input type="password" class="form-control" placeholder="password">
+              </div>
+            </div><hr>
+            <div class="row">
+              <div class="col-md-5">
+                <button type="submit" mat-raised-button color="primary">Register</button>
+
+              </div>
+            </div>
+
           <a href="login.html" class="text-center">I already have a membership</a>
         </div>
         <!-- /.form-box -->
@@ -74,8 +105,8 @@
       </div>
     </div>
   </div>
-  <div *ngIf="myForm.submitted && myForm.invalid" class="error-alert">
+  <!-- <div *ngIf="myForm.submitted && myForm.invalid" class="error-alert">
     Form submission failed. Please check your inputs and try again.
-  </div>
+  </div> -->
 
 </body>
