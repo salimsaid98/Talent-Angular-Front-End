@@ -17,83 +17,105 @@
   </div>
 </section>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-         <strong> Personal Information :</strong> <strong> <i class="fa fa-user"></i></strong>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              First Name : <input type="text" class="form-control" placeholder="enter first name">
-            </div>
-            <div class="col-md-4">
-              Second Name : <input type="text" class="form-control" placeholder="enter second name">
-            </div>
-            <div class="col-md-4">
-              Last Name : <input type="text" class="form-control" placeholder="enter last name">
-            </div>
-          </div><hr>
-          <div class="row">
-            <div class="col-md-4">
-              Email : <input type="email" class="form-control" placeholder="name@example.com">
-            </div>
-            <div class="col-md-4">
-              Address : <input type="text" class="form-control" placeholder="enter street address">
-            </div>
-            <div class="col-md-4">
-              Phone : <input type="text" class="form-control" placeholder="+255 XXX XXX XXX">
-            </div>
-          </div><hr>
-          <div class="row">
-            <div class="col-md-4">
-              Zanzibar ID : <input type="text" class="form-control" placeholder="enter Zanzibar ID">
-            </div>
-            <div class="col-md-4">
-              Select your Gender :
-             <select name="" id="" class="form-control">
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-             </select>
-            </div>
-            <div class="col-md-4">
-              Date Of Birth :
-              <input type="date" class="form-control">
-            </div>
-          </div><hr>
-          <div class="row">
-            <div class="col-md-4">
-              <button type="submit" class="btn btn-success">Submit <i class="fa fa-paper-plane"></i></button>
-            </div>
+
+  <div *ngIf="!hasPersonalInfo">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <strong> Personal Information :</strong> <strong> <i class="fa fa-user"></i></strong>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="personalForm" (submit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    First Name : <input type="text" class="form-control" placeholder="enter first name" formControlName="first_name">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    Second Name : <input type="text" class="form-control" placeholder="enter second name" formControlName="second_name">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    Last Name : <input type="text" class="form-control" placeholder="enter last name" formControlName="last_name">
+                  </div>
+                </div>
+              </div><hr>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    Email : <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    Address : <input type="text" class="form-control" placeholder="enter street address" formControlName="address">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    Phone : <input type="text" class="form-control" placeholder="+255 XXX XXX XXX" formControlName="phone">
+                  </div>
+                </div>
+              </div><hr>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    Select your Gender :
+                    <select name="" id="" class="form-control" formControlName="gender">
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  Date Of Birth :
+                  <input type="date" class="form-control" formControlName="dob">
+                </div>
+              </div><hr>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success" [disabled]="!personalForm.valid">Submit <i class="fa fa-paper-plane"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <div class="d-flex justify-content-between">
-           <strong> Personal Information</strong><a href="" ><strong><i class="fa fa-edit"></i></strong></a>
+
+
+  <div *ngIf="hasPersonalInfo">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between">
+             <strong> Personal Information</strong><a (click)="edit(personal_info.id)"><strong><i class="fa fa-edit"></i></strong></a>
+            </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <strong><i class="fa fa-user"></i></strong> Salim Said Mohd
-            </div>
-          </div><hr>
-          <div class="row">
-            <div class="col-md-4">
-              <strong><i class="fa fa-phone"></i></strong> : +255 000 000
-            </div>
-            <div class="col-md-4">
-              <strong><i class="fa fa-envelope"></i></strong> : salim@gmail.com
-            </div>
-            <div class="col-md-4">
-              <strong><i class="fa fa-address-book"></i></strong> : Chwaka Zanzibar
+          <div class="card-body">
+            <div class="row" >
+              <div class="col-md-4">
+                <strong><i class="fa fa-user"></i></strong> {{personal_info.first_name}} {{personal_info.second_name}} {{personal_info.last_name}}
+              </div>
+            </div><hr>
+            <div class="row">
+              <div class="col-md-4">
+                <strong><i class="fa fa-phone"></i></strong> : {{personal_info.phone}}
+              </div>
+              <div class="col-md-4">
+                <strong><i class="fa fa-envelope"></i></strong> : {{personal_info.address}}
+              </div>
+              <div class="col-md-4">
+                <strong><i class="fa fa-calendar"></i></strong> : {{personal_info.dob}}
+              </div>
             </div>
           </div>
         </div>

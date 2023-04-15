@@ -24,65 +24,94 @@
       </div>
       <div class="card-body">
         <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                Compony Name : <input type="text" class="form-control" placeholder="enter company name">
+          <form [formGroup]="myForm" (ngSubmit)="submit()">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  Compony Name :
+                  <input type="text" class="form-control" formControlName="company_name" placeholder="enter company name">
+                </div>
+                <div class="col-md-4">
+                  Job Tittle :
+                  <input type="text" class="form-control" formControlName="job_tittle" placeholder="enter job tittle">
+                </div>
+                <div class="col-md-4">
+                  Suppervisor Name :
+                  <input type="text" class="form-control" formControlName="suppervisor_name" placeholder="enter supervisor name">
+                </div>
               </div>
-              <div class="col-md-4">
-                Job Tittle : <input type="text" class="form-control" placeholder="enter job tittle">
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  Suppervisor Phone :
+                  <input type="text" class="form-control" formControlName="suppervisor_phone" placeholder="enter supervisor phone">
+                </div>
+                <div class="col-md-4">
+                  Start Date:
+                  <input type="date" class="form-control" formControlName="wend_date">
+                </div>
+                <div class="col-md-4">
+                  End Date:
+                  <input type="date" class="form-control" formControlName="wstart_date">
+                </div>
               </div>
-              <div class="col-md-4">
-                Suppervisor Name : <input type="text" class="form-control" placeholder="enter suppervisor name">
-              </div>
-            </div><hr>
-            <div class="row">
-              <div class="col-md-4">
-                Suppervisor Phone : <input type="text" class="form-control" placeholder="enter suppervisor phone">
-              </div>
-              <div class="col-md-4">
-                Start Date: <input type="date" class="form-control">
-              </div>
-              <div class="col-md-4">
-                End Date:<input type="date" class="form-control">
-              </div>
-            </div><hr>
-            <div class="row">
-             <div class="col-md-4">
-              Attach your Certificate : <input type="file" class="form-control">
-             </div>
-            </div><hr>
-            <div class="row">
-              <div class="col-md-4">
-                <button class="btn btn-success">Save</button>
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="btn btn-success" [disabled]="!myForm.valid">Save</button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div><hr>
         <div class="card">
           <div class="card-header">
            <strong>Work Experience Saved</strong>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <table class="table table-stripe">
-               <thead>
-                <tr>
-                  <th>Sn</th>
-                  <th>Company Name</th>
-                  <th>Job Tittle</th>
-                  <th>Suppervisor Name</th>
-                  <th>Suppervisor Phone</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Action</th>
-                </tr>
-               </thead>
-               <tbody>
-
-               </tbody>
-              </table>
+          <div class="card-body" >
+            <div class="d-flex justify-content-end">
+              <mat-form-field >
+                <mat-label>Search</mat-label>
+                <input style="padding: 2px;" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
             </div>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="company_name">
+                  <mat-header-cell *matHeaderCellDef class="specialization-header">Company name</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="specialization-column">{{element.company_name}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="job_tittle">
+                  <mat-header-cell *matHeaderCellDef class="specialization-header">Job tittle</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="specialization-column">{{element.job_tittle}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="suppervisor_name">
+                  <mat-header-cell *matHeaderCellDef class="specialization-header">Suppervisor name</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="specialization-column">{{element.suppervisor_name}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="suppervisor_phone">
+                  <mat-header-cell *matHeaderCellDef class="specialization-header">Suppervisor Phone</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="specialization-column">{{element.suppervisor_phone}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                  <mat-header-cell *matHeaderCellDef class="action-header">Action</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="action-column">
+                    <!-- <a (click)="view(element.id)" mat-icon-button color="primary" aria-label="Example icon button with a home icon"><mat-icon>visibility</mat-icon></a> -->
+                    <a (click)="edit(element.id)" mat-icon-button color="success" aria-label="Example icon button with a home icon"><mat-icon> border_color</mat-icon></a>
+                    <a (click)="delete(element.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon"><mat-icon>delete</mat-icon></a>
+                  </mat-cell>
+
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+
           </div>
         </div>
       </div>

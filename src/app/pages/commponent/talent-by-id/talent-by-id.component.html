@@ -1,1 +1,61 @@
-<p>talent-by-id works!</p>
+<section class="content">
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Talent By Category</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+</section>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <mat-label>Talent List</mat-label>
+          <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
+        </div>
+        <div class="mat-elevation-z8">
+          <mat-table [dataSource]="dataSource">
+            <!-- <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="talent_name">
+              <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.talent_name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="company_name">
+              <mat-header-cell *matHeaderCellDef>Employer</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.company_name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="closing_date">
+              <mat-header-cell *matHeaderCellDef>Closing Date</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.closig_date}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="view">
+              <mat-header-cell *matHeaderCellDef>View</mat-header-cell>
+              <mat-cell *matCellDef="let element"><a (click)="view(element.id)" class="btn btn-primary"><i class="fa fa-eye"></i> View to Apply</a></mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

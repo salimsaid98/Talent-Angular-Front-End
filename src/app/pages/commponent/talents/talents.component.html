@@ -20,23 +20,40 @@
         Talent List
       </div>
       <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-            <th width="85%">Description</th>
-            <th  width="15%">Closing Date</th>
-          </thead>
-          <tbody>
-            <td>
-              <b>Post </b> : ACCOUNTANT <br>
-              <b>Employers</b> : SPICE TECHNOLOGY<br>
-             <a [routerLink]="['/home/talent_details/']">More Details</a>
-            </td>
-            <td>
-              2021-01-22 <br>
-              <a href="" class="btn btn-primary">Apply</a>
-            </td>
-          </tbody>
-        </table>
+        <div class="d-flex justify-content-end">
+          <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
+        </div>
+        <div class="mat-elevation-z8">
+          <mat-table [dataSource]="dataSource">
+            <!-- <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="talent_name">
+              <mat-header-cell *matHeaderCellDef>Talent</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.talent_name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="company_name">
+              <mat-header-cell *matHeaderCellDef>Employer</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.company_name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="closing_date">
+              <mat-header-cell *matHeaderCellDef>Closing Date</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.closig_date}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="view">
+              <mat-header-cell *matHeaderCellDef>View</mat-header-cell>
+              <mat-cell *matCellDef="let element"><a (click)="view(element.id)" class="btn btn-primary"><i class="fa fa-eye"></i> View to Apply</a></mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
       </div>
     </div>
   </div>

@@ -20,19 +20,46 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        Talent List
+       <strong>My Application</strong>
       </div>
-      <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-           <th>Application Status</th>
-           <th>Talent</th>
-           <th>Date Applied</th>
-          </thead>
-          <tbody>
+      <div class="card-body" >
+        <div class="d-flex justify-content-end">
+          <mat-form-field >
+            <mat-label>Search</mat-label>
+            <input style="padding: 2px;" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef class="specialization-header">Application Status</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="specialization-column">{{element.status}}</mat-cell>
+            </ng-container>
 
-          </tbody>
-        </table>
+            <ng-container matColumnDef="talent_name">
+              <mat-header-cell *matHeaderCellDef class="specialization-header">Talent</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="specialization-column">{{element.talent_name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date_applied">
+              <mat-header-cell *matHeaderCellDef class="specialization-header">date Applied</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="specialization-column">{{element.date_applied}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Action">
+              <mat-header-cell *matHeaderCellDef class="action-header">Action</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="action-column">
+                <!-- <a (click)="view(element.id)" mat-icon-button color="primary" aria-label="Example icon button with a home icon"><mat-icon>visibility</mat-icon></a> -->
+                <!-- <a (click)="edit(element.id)" mat-icon-button color="success" aria-label="Example icon button with a home icon"><mat-icon> border_color</mat-icon></a> -->
+                <a (click)="delete(element.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon"><mat-icon>delete</mat-icon></a>
+              </mat-cell>
+
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
       </div>
     </div>
   </div>

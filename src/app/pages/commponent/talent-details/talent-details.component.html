@@ -24,24 +24,42 @@
       </div>
       <div class="card-body">
         <table class="table table-bordered">
-          <tr>
-            <th>POST</th> <td>Accaountant</td>
-          </tr>
-          <tr>
-            <th>EMPLOYERS</th> <td>Spice Tech</td>
-          </tr>
-          <tr>
-            <th>APPLICATION TIMELINE</th> <td>2023-03-29 2023-04-11</td>
-          </tr>
-          <tr>
-            <th>DUTIES AND RESPONSIBILITIES</th> <td> <p>i.To prepare finacial Position</p><p>i.To prepare finacial Position</p>  </td>
-          </tr>
-          <tr>
-            <th>QUALIFICATION AND EXPERIENCE</th> <td>Holder of Master’s degree in Computer Science or Computer Engineering with GPA not less than 3.8 and Bachelor’s degree in Computer Science or Computer Engineering with GPA not less than 3.5 from any recognized Institution</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Talent</th> <td>{{talents.talent_name}}</td>
+            </tr>
+            <tr>
+              <th>EMPLOYERS</th> <td>{{talents.company_name}}</td>
+            </tr>
+            <tr>
+              <th>APPLICATION TIMELINE</th> <td>{{talents.closig_date}}</td>
+            </tr>
+            <tr>
+              <th>DUTIES AND RESPONSIBILITIES</th> <td>{{talents.duties_and_respo}}</td>
+            </tr>
+            <tr>
+              <th>QUALIFICATION AND EXPERIENCE</th> <td>{{talents.qualification}}</td>
+            </tr>
+          </tbody>
+
         </table>
         <div class="card-footer">
-          <button class="btn btn-primary">Apply</button>
+            <form [formGroup]="myForm" (ngSubmit)="submit()">
+              <input type="hidden" formControlName="talent" value="{{talents.id}}">
+              <input type="hidden" formControlName="employer" value="{{talents.employer}}">
+              <input type="hidden" formControlName="status">
+
+              <ng-container *ngIf="!isApplied">
+                <button class="btn btn-primary" [disabled]="isApplied">Apply</button>
+                <hr>
+              </ng-container>
+            </form>
+          <ng-container *ngIf="isApplied">
+            <span class="text-success">Applied</span>
+          </ng-container>
+          <p *ngIf="cv_status === 'Complete'" style="color: green;">!Your Cv is Complete</p>
+          <p *ngIf="cv_status === 'Incomplete'" style="color: red;">Complete your CV</p>
+
         </div>
       </div>
     </div>

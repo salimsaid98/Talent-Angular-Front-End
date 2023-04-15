@@ -36,7 +36,17 @@ import { MyApplicationComponent } from './pages/commponent/my-application/my-app
 import { TalentByIdLoginComponent } from './pages/commponent/talent-by-id-login/talent-by-id-login.component';
 import { TalentByIdComponent } from './pages/commponent/talent-by-id/talent-by-id.component';
 import { TalentDetailsComponent } from './pages/commponent/talent-details/talent-details.component';
+import { HomeUserComponent } from './pages/commponent/home-user/home-user.component';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { EditPersonalInfoComponent } from './pages/commponent/edit-personal-info/edit-personal-info.component';
+import { ViewAcademicQualificationComponent } from './pages/commponent/view-academic-qualification/view-academic-qualification.component';
+import {MatIconModule} from '@angular/material/icon';
 
+
+// Import the functions you need from the SDKs you need
 
 @NgModule({
   declarations: [
@@ -63,8 +73,12 @@ import { TalentDetailsComponent } from './pages/commponent/talent-details/talent
     TalentByIdLoginComponent,
     TalentByIdComponent,
     TalentDetailsComponent,
+    HomeUserComponent,
+    EditPersonalInfoComponent,
+    ViewAcademicQualificationComponent,
 
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -73,9 +87,13 @@ import { TalentDetailsComponent } from './pages/commponent/talent-details/talent
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule,
-    MatButtonModule,MatCardModule,MatDialogModule,MatInputModule
+    MatButtonModule,MatCardModule,MatDialogModule,MatInputModule,NgxDatatableModule,
+    MatPaginatorModule,MatTableModule,MatIconModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

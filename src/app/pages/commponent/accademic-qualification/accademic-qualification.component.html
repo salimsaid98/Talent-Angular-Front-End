@@ -26,75 +26,101 @@
       <div class="card-body">
         <div class="card">
           <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                Education Leve :<select name="" id="" class="form-control">
-                  <option value="">Degree</option>
-                  <option value="">Phd</option>
-                  <option value="">Diploma</option>
-                </select>
+            <form [formGroup]="myForm" (ngSubmit)="submit()">
+              <div class="row">
+                <div class="col-md-4">
+                  Education Level:
+                  <select formControlName="education_level" class="form-control">
+                    <option value="">--Select Education level--</option>
+                    <option value="Degree">Degree</option>
+                    <option value="Phd">Phd</option>
+                    <option value="Phd">Master</option>
+                    <option value="Diploma">Diploma</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  Institution:
+                  <input type="text" formControlName="institution" class="form-control" placeholder="enter institution">
+                </div>
+                <div class="col-md-4">
+                  Program:
+                  <input type="text" formControlName="program" class="form-control" placeholder="enter program">
+                </div>
               </div>
-              <div class="col-md-4">
-                Institution : <input type="text" class="form-control" placeholder="enter institution">
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  Date From:
+                  <input type="date" formControlName="estart_date" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  To:
+                  <input type="date" formControlName="eend_date" class="form-control">
+                </div>
               </div>
-              <div class="col-md-4">
-                Program  : <input type="text" class="form-control" placeholder="enter program">
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="btn btn-success" type="submit" [disabled]="!myForm.valid">Save</button>
+                </div>
               </div>
-            </div><hr>
-            <div class="row">
-              <div class="col-md-4">
-                Country: <select name="" id="" class="form-control">
-                  <option value="">Tanzania</option>
-                  <option value="">Kenya</option>
-                  <option value="">Uganda</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                Date From: <input type="date" class="form-control">
-              </div>
-              <div class="col-md-4">
-                To :<input type="date" class="form-control">
-              </div>
-            </div><hr>
-            <div class="row">
-             <div class="col-md-4">
-              Attach your Certificate : <input type="file" class="form-control">
-             </div>
-            </div><hr>
-            <div class="row">
-              <div class="col-md-4">
-                <button class="btn btn-success">Save</button>
-              </div>
-            </div>
-          </div>
-        </div><hr>
-        <div class="card">
-          <div class="card-header">
-           <strong> Accademic Qualification Saved</strong>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <table class="table table-stripe">
-               <thead>
-                <tr>
-                  <th>Sn</th>
-                  <th>Level</th>
-                  <th>Institution</th>
-                  <th>Program Name</th>
-                  <th>Country</th>
-                  <th>Date From</th>
-                  <th>To</th>
-                  <th>File</th>
-                  <th>Action</th>
-                </tr>
-               </thead>
-               <tbody>
-
-               </tbody>
-              </table>
-            </div>
+            </form>
           </div>
         </div>
+        <hr>
+
+       <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-end">
+            <mat-form-field >
+              <mat-label>Search</mat-label>
+              <input style="padding: 2px;" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+            </mat-form-field>
+          </div>
+          <div class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource">
+              <!-- <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Sno.</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+              </ng-container> -->
+              <ng-container matColumnDef="Level">
+                <mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.education_level}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Program">
+                <mat-header-cell *matHeaderCellDef>Program</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.program}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Institution">
+                <mat-header-cell *matHeaderCellDef>Institution</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.institution}}</mat-cell>
+              </ng-container>
+<!--
+              <ng-container matColumnDef="DateFrom">
+                <mat-header-cell *matHeaderCellDef>Date From</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.estart_date}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="To">
+                <mat-header-cell *matHeaderCellDef>Closing Date</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.eend_date}}</mat-cell>
+              </ng-container> -->
+              <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <!-- <a (click)="view(element.id)" mat-icon-button color="primary" aria-label="Example icon button with a home icon"><mat-icon>visibility</mat-icon></a> -->
+                  <a (click)="edit(element.id)" mat-icon-button color="success" aria-label="Example icon button with a home icon"><mat-icon> border_color</mat-icon></a>
+                  <a (click)="delete(element.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon"><mat-icon>delete</mat-icon></a>
+                </mat-cell>
+
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+
+        </div>
+       </div>
       </div>
      </div>
     </div>

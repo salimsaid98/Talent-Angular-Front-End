@@ -24,37 +24,53 @@
      <strong>Skills Form</strong>
       </div>
       <div class="card-body">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
+        <form [formGroup]="myForm" (ngSubmit)="submit()">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  Skills: <input type="text" class="form-control" formControlName="skills_name" placeholder="enter skills">
+                </div>
+              </div> <hr>
               <div class="col-md-4">
-                Skills: <input type="text" class="form-control" placeholder="enter skills">
+                <button type="submit" class="btn btn-success" [disabled]="!myForm.valid">Save</button>
               </div>
-            </div> <hr>
-            <div class="col-md-4">
-              <button class="btn btn-success">Save</button>
             </div>
-          </div>
-        </div><hr>
+          </div><hr>
+       </form>
         <div class="card">
           <div class="card-header">
            <strong>Skills Saved</strong>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <table class="table table-stripe">
-               <thead>
-                <tr>
-                  <th>Sn</th>
-                  <th>Skills</th>
-                  <th>Action</th>
-                </tr>
-               </thead>
-               <tbody>
-
-               </tbody>
-              </table>
+          <div class="card-body" >
+            <div class="d-flex justify-content-end">
+              <mat-form-field >
+                <mat-label>Search</mat-label>
+                <input style="padding: 2px;" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
             </div>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="skills_name">
+                  <mat-header-cell *matHeaderCellDef class="specialization-header">Skills Name</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="specialization-column">{{element.skills_name}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                  <mat-header-cell *matHeaderCellDef class="action-header">Action</mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="action-column">
+                    <!-- <a (click)="view(element.id)" mat-icon-button color="primary" aria-label="Example icon button with a home icon"><mat-icon>visibility</mat-icon></a> -->
+                    <a (click)="edit(element.id)" mat-icon-button color="success" aria-label="Example icon button with a home icon"><mat-icon> border_color</mat-icon></a>
+                    <a (click)="delete(element.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon"><mat-icon>delete</mat-icon></a>
+                  </mat-cell>
+
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+
           </div>
         </div>
       </div>

@@ -19,6 +19,10 @@ import { ProfileComponent } from './pages/commponent/profile/profile.component';
 import { HomeContentComponent } from './user/home-content/home-content.component';
 import { SkillsComponent } from './pages/commponent/skills/skills.component';
 import { MyApplicationComponent } from './pages/commponent/my-application/my-application.component';
+import { HomeUserComponent } from './pages/commponent/home-user/home-user.component';
+import { TalentByIdComponent } from './pages/commponent/talent-by-id/talent-by-id.component';
+import { EditPersonalInfoComponent } from './pages/commponent/edit-personal-info/edit-personal-info.component';
+import { ViewAcademicQualificationComponent } from './pages/commponent/view-academic-qualification/view-academic-qualification.component';
 
 const routes: Routes = [
 {
@@ -28,6 +32,15 @@ const routes: Routes = [
     },
     {
       path:'personal_info',component:PersonalInfoComponent
+    },
+    {
+      path:'edit-personal_info',component:EditPersonalInfoComponent
+    },
+    {
+      path:'view-accademic-qualification',component:ViewAcademicQualificationComponent
+    },
+    {
+      path:'home_user',component:HomeUserComponent
     },
     {
       path:'academic',component:AccademicQualificationComponent
@@ -49,6 +62,9 @@ const routes: Routes = [
     },
     {
       path:'my_application',component:MyApplicationComponent
+    },
+    {
+      path:'talent_by_id',component:TalentByIdComponent
     },
     {
       path:'talent_details',component:TalentDetailsComponent

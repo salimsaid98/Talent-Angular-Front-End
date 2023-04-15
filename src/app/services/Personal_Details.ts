@@ -7,6 +7,5 @@ export class PersonalDetails{
   phone!: string
   dob!: Date
   gender!: string
-  image!:string
   user!:number
 }
